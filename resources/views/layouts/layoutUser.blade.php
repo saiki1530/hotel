@@ -8,7 +8,9 @@
     <link rel="icon" href="/image/favicon.png" type="/image/png">
     <title>@yield('title')</title>
     <!-- Bootstrap CSS -->
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/vendors/linericon/style.css">
@@ -17,6 +19,7 @@
     <link rel="stylesheet" href="/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css">
     <link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/_checkout.css">
     <!-- main css -->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/responsive.css">
@@ -68,6 +71,31 @@
         item.addEventListener('click', () => {
             menuItems.forEach(i => i.classList.remove('active'));
             item.classList.add('active');
+        });
+    });
+
+
+    const paymentTypes = document.querySelectorAll('.type');
+    const paymentSections = {
+        'credit-card': document.getElementById('credit-card-section'),
+        'paypal': document.getElementById('paypal-section'),
+        'amazon': document.getElementById('amazon-section'),
+    };
+
+    paymentTypes.forEach((type) => {
+        type.addEventListener('click', () => {
+            // Hide all payment sections
+            for (const key in paymentSections) {
+                if (paymentSections.hasOwnProperty(key)) {
+                    paymentSections[key].style.display = 'none';
+                }
+            }
+
+            // Show the selected payment method's section
+            const selectedPaymentMethod = type.getAttribute('data-payment-method');
+            if (paymentSections[selectedPaymentMethod]) {
+                paymentSections[selectedPaymentMethod].style.display = 'block';
+            }
         });
     });
 </script>

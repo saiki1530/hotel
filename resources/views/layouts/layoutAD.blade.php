@@ -29,8 +29,8 @@
                 <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
                     <a class="navbar-brand brand-logo" href="/admin/dashboard"><img src="/admin/images/logo.svg"
                             alt="logo" /></a>
-                    <a class="navbar-brand brand-logo-mini" href="/admin/dashboard"><img src="/admin/images/logo-mini.svg"
-                            alt="logo" /></a>
+                    <a class="navbar-brand brand-logo-mini" href="/admin/dashboard"><img
+                            src="/admin/images/logo-mini.svg" alt="logo" /></a>
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button"
                         data-toggle="minimize">
                         <span class="mdi mdi-sort-variant"></span>
@@ -152,7 +152,7 @@
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
                             id="profileDropdown">
-                            <img src="{{ Auth::user()->hinh }}" alt="profile" style="display:inline;"/>
+                            <img src="{{ Auth::user()->hinh }}" alt="profile" style="display:inline;" />
                             <span class="nav-profile-name">{{ Auth::user()->name }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -163,17 +163,17 @@
                             </a>
                             <a class="dropdown-item" href="/">
                                 <b><i class="bi bi-shop text-primary"></i></b>
-                               Cửa hàng
+                                Cửa hàng
                             </a>
 
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <x-dropdown-link :href="route('logout')" class=" dropdown-item nav-link"
-                                        onclick="event.preventDefault();
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <x-dropdown-link :href="route('logout')" class=" dropdown-item nav-link"
+                                    onclick="event.preventDefault();
                                             this.closest('form').submit(); ">
-                                <i class="mdi mdi-logout text-primary"></i>{{ __('Đăng xuất') }}
-                                    </x-dropdown-link>
-                                </form>
+                                    <i class="mdi mdi-logout text-primary"></i>{{ __('Đăng xuất') }}
+                                </x-dropdown-link>
+                            </form>
                         </div>
                     </li>
                 </ul>

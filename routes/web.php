@@ -26,9 +26,9 @@ Route::get('/product', [KhachSanController::class, 'product']);
 Route::get('/addcart/{id}', [OrdersController::class, 'addcart']);
 Route::get('/cart', [OrdersController::class, 'cart'])->name('cart');
 
-Route::get('/remove-from-cart/{id}',[OrdersController::class,'removeFromCart'])->name('cart.remove');
+Route::get('/remove-from-cart/{id}', [OrdersController::class, 'removeFromCart'])->name('cart.remove');
 
-Route::post('/cart/update', [OrdersController::class,'updateCart'])->name('cart.update');
+Route::post('/cart/update', [OrdersController::class, 'updateCart'])->name('cart.update');
 Route::post('/calculate-shipping', [OrdersController::class, 'calculateShipping'])->name('calculate.shipping');
 
 
@@ -42,7 +42,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('/allorder', [AdminController::class, 'donhang'])->name('admin.allorder');
     Route::get('/orderItem/{id_dh}', [AdminController::class, 'orderItem'])->name('admin.orderItem');
 
-    Route::get('/xoa/{id}',[AdminController::class,'xoa'] );
+    Route::get('/xoa/{id}', [AdminController::class, 'xoa']);
     Route::get('/editss/{id}', [AdminController::class, 'editss']);
     Route::post('/editss/{id}', [AdminController::class, 'updateSanPham']);
     Route::get('/products/create', [AdminController::class, 'create'])->name('admin.addsp');
@@ -57,9 +57,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
 
 
-    Route::get('/addus',[AdminController::class,'addus'] );
-    Route::post('/addus',[AdminController::class,'addus_'] );
-
+    Route::get('/addus', [AdminController::class, 'addus']);
+    Route::post('/addus', [AdminController::class, 'addus_']);
 });
 
 
@@ -71,5 +70,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::get('/checkout', function () {
+    return view('page.checkout-detail');
+});
+
+Route::get('/checkout-payment', function () {
+    return view('page.checkout-payment');
+});
+
 Route::get('/quantri', [QuanTriTinController::class, 'index'])->middleware('auth', 'Quantri');
 require __DIR__ . '/auth.php';
