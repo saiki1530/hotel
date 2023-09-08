@@ -115,7 +115,7 @@ Cart
                                 </td>
                                 <td></td>
                             </tr>
-                            <form action="/session" method="post">
+                            <form action="{{ route('checkout') }}" method="post">
                             <tr class="out_button_area">
                                 <td></td>
                                 <td></td>
@@ -155,9 +155,11 @@ Cart
                                         <a class="gray_btn" href="/../../product">Tiếp tục mua sắm</a>
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                                        <button class="primary-btn" type="submit" id="checkout-live-button"> Thanh
-                                            toán</button>
-
+                                        <form action="{{ route('checkout') }}" method="POST">
+                                            <button name="checkout" class="primary-btn" type="submit"
+                                                id="checkout-live-button"> Thanh
+                                                toán</button>
+                                        </form>
 
                                     </div>
                                 </td>
