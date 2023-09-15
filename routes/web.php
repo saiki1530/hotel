@@ -23,6 +23,9 @@ use App\Http\Controllers\OrdersController;
 Route::get('/', [KhachSanController::class, 'index']);
 Route::get('/product', [KhachSanController::class, 'product']);
 
+Route::post('/checkout', [OrdersController::class, 'checkout'])->name('checkout');
+Route::get('/success', [OrdersController::class, 'success'])->name('success');
+Route::get('/cancel', [OrdersController::class, 'cancel'])->name('cancel');
 Route::get('/addcart/{id}', [OrdersController::class, 'addcart']);
 Route::get('/cart', [OrdersController::class, 'cart'])->name('cart');
 

@@ -8,6 +8,45 @@ use Illuminate\Http\Request;
 
 class OrdersController extends Controller
 {
+    public function success()
+    {
+        echo 'Thanh toán thành công';
+    }
+    public function cancel()
+    {
+        echo 'Thanh toán thất bại';
+    }
+    public function checkout()
+    {
+        $cart = session('cart');
+        $line_items = [];
+        foreach ($cart as $item) {
+            $line_items[] = [
+                'price_data' => [
+                    'currency' => 'usd',
+                    'product_data' => [
+                        'name' => $item['tenSP'],
+                    ],
+                    'unit_amount' => $item['gia_goc'],
+                ],
+                'quantity' => $item['so_luong'],
+            ];
+        }
+
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
+        $checkout_session = $stripe->checkout->sessions->create([
+            'line_items' => $line_items,
+            'mode' => 'payment',
+            'success_url' => route('success', [], true),
+            'cancel_url' => route('cancel', [], true),
+        ]);
+
+        return redirect($checkout_session->url);
+        // echo '<pre>';
+        // print_r($cart);
+        // echo '</pre>';
+    }
+
     function cart()
     {
         // $sanpham = DB::table('sanpham')->get();
